@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "transpile": "tsc app.ts && tsc app/config/db.config.ts && tsc app/models/index.ts && tsc app/models/model.ts && tsc app/routes/record.ts",
+    "transpile": "tsc app.ts && tsc app/config/db.config.ts && tsc app/models/index.ts && tsc app/models/bookmodel.ts && tsc app/routes/record.ts",
     "start": "npm run transpile && node app.js local",
     "deploy": "npm run transpile && serverless deploy"
   },

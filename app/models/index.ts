@@ -6,10 +6,10 @@ mongoose.Promise = global.Promise;
 const db = {
     mongoose: undefined,
     url: undefined,
-    tutorials: undefined
+    books: undefined
 };
 db.mongoose = mongoose;
 db.url = dbConfig.url;
-db.tutorials = require("../models/model.ts")(mongoose);
+db.books = require("../models/bookmodel")(mongoose);
 
 module.exports = db;

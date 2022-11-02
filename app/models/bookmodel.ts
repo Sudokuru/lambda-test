@@ -1,4 +1,16 @@
-module.exports = mongoose => {
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+
+const BookModelSchema = new Schema({
+    title: String,
+    description: String,
+    published: Boolean,
+});
+
+// Export function creates BookModel model
+module.exports = mongoose.model("BookModel", BookModelSchema);
+
+/*module.exports = mongoose => {
     let schema = mongoose.Schema(
         {
             title: String,
@@ -15,4 +27,4 @@ module.exports = mongoose => {
     });
 
     return mongoose.model("tutorial", schema);
-};
+};*/
