@@ -1,3 +1,11 @@
+Folder Structure:
+configs: contains all configurations e.g. database login info in db.config.ts
+controllers: houses all controller methods which get requests from routes and convert them into HTTP responses using middleware and services as needed
+middlewares: contains all middleware (software that lets software communicate with other software) in one place e.g. authentication
+routes: single file for each logical set of routes e.g. routes for one type of resource, can be further broken down e.g. by versions of API
+models: contains data models for database
+services: contains all the business logic e.g. services to represent objects and methods to run queries on the database
+
 Steps taken:
 1. mkdir and cd
 2. npm init -y
