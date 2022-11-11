@@ -14,12 +14,14 @@ process.argv.forEach(function(val, index, array) {
 });
 
 //app.use(require("./app/routes/books"));
-const booksRouter = require('./app/routes/books.route');
-app.use('/books', booksRouter);
 //require("./app/routes/record")(app);
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+const booksRouter = require('./app/routes/books.route');
+app.use('/books', booksRouter);
+
 app.get('/api/info', (req, res) => {
   res.send({ application: 'sample-app', version: '1' });
 });

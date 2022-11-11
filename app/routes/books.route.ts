@@ -5,8 +5,7 @@ const booksRoute = express.Router();
 
 const booksController = require('../controllers/books.controller');
 
-/*app.get('/record/books', (req, res) => {
-    res.send({ application: 'title: ' + req.query.titles });
-});*/
+/* GET search books */
+booksRoute.get('/search', booksController.search);
 
-module.exports = booksRoute
+module.exports = booksRoute;
