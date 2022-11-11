@@ -23,17 +23,14 @@ BookModel.create({ title: "The Hunger Games", description: "Dystopian", publishe
     // saved!
 });
 
-// Find all books with description: "Dystopian" selecting the title field
-/*BookModel.find({ description: "Dystopian" }, "title", (err, books) => {
-    if (err) return;
-    console.log(books);
-});*/
-
-async function create(book) {
-    BookModel.create({ title: book.title, description: book.description, published: book.published}, function (err, book) {
-        if (err) return; //handleError(err);
-        // saved!
-    });
+// Upload book to database
+async function upload(book) {
+    try {
+        let res = await BookModel.create({title: book.title, description: book.description, published: book.published});
+        return res;
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 // Get all books with description selecting the title field
@@ -47,4 +44,4 @@ async function query(description: string) {
     }
 }
 
-module.exports = {create, query};
+module.exports = {upload, query};
