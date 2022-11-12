@@ -25,7 +25,7 @@
 
 ### Backend HTTP Request Processing Diagram
 ```mermaid
-%%{init: {'theme': 'neutral', 'themeVariables': { 'fontSize': '24px', 'fontFamily': 'arial'}}}%%
+%%{init: {'theme': 'neutral', 'themeVariables': { 'fontSize': '32px', 'fontFamily': 'arial'}}}%%
 flowchart TD
     Client["Client\n(Browser)"] ---> |HTTP Request| app[app.ts]
     app --> books{Does the path \nbegin with /books?}
