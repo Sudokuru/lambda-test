@@ -1,12 +1,13 @@
-Folder Structure:
-configs: contains all configurations e.g. database login info in db.config.ts
-controllers: houses all controller methods which get requests from routes and convert them into HTTP responses using middleware and services as needed
-middlewares: contains all middleware (software that lets software communicate with other software) in one place e.g. authentication
-routes: single file for each logical set of routes e.g. routes for one type of resource, can be further broken down e.g. by versions of API
-models: contains data models for database
-services: contains all the business logic e.g. services to represent objects and methods to run queries on the database
 
-Steps taken:
+### Folder Structure:
+```configs:``` contains all configurations e.g. database login info in db.config.ts<br>
+```controllers:``` houses all controller methods which get requests from routes and convert them into HTTP responses using middleware and services as needed<br>
+```middlewares:``` contains all middleware (software that lets software communicate with other software) in one place e.g. authentication<br>
+```routes:``` single file for each logical set of routes e.g. routes for one type of resource, can be further broken down e.g. by versions of API<br>
+```models:``` contains data models for database<br>
+```services:``` contains all the business logic e.g. services to represent objects and methods to run queries on the database<br>
+
+### Steps taken:
 1. mkdir and cd
 2. npm init -y
 3. npm install express && npm install mongoose && npm install typescript
@@ -22,7 +23,7 @@ Steps taken:
 13. mkdir routes and touch record.ts and added that code
 14. tsc app.ts and record.ts
 
-Backend HTTP Request Processing Diagram
+### Backend HTTP Request Processing Diagram
 ```mermaid
 flowchart TD
     Client["Client\n(Browser)"] ---> |HTTP Request| app[app.ts]
