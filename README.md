@@ -21,3 +21,22 @@ Steps taken:
 12. npm install mongodb express cors dotenv
 13. mkdir routes and touch record.ts and added that code
 14. tsc app.ts and record.ts
+
+Backend HTTP Request Processing Diagram
+```mermaid
+flowchart TD
+    Client["Client\n(Browser)"] ---> |HTTP Request| app[app.ts]
+    app --> books{Does the path \nbegin with /books?}
+    books --> |Yes| route[books.route.ts]
+    route --> booksCreate{Does the path \nbegin with /books/create?}
+    route --> booksSearch{Does the path \nbegin with /books/search?}
+    booksCreate --> |Yes| controlCreate[booksController.create]
+    booksSearch --> |Yes| controlSearch[booksController.search]
+    controlCreate --> |req.body.book| bookCreate[book.create]
+    controlSearch --> |req.query.description| bookSearch[book.search]
+    bookCreate --> |book| dbbUpload[dbb.upload]
+    bookSearch --> |description| dbbQuery[dbb.query]
+    dbbUpload --> |BookModel.create| mongoose[db.mongoose]
+    dbbQuery --> |BookModel.find| mongoose
+    mongoose --> db[MongoDB]
+```
