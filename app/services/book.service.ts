@@ -11,4 +11,8 @@ async function search(description: string) {
     return result;
 }
 
-module.exports = {create, search};
+function adder(a: number, b: number):number {
+    return a + b;
+}
+
+module.exports = {create, search, adder};

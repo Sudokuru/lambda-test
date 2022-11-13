@@ -22,6 +22,7 @@
 12. npm install mongodb express cors dotenv
 13. mkdir routes and touch record.ts and added that code
 14. tsc app.ts and record.ts
+15. add Jest as dependency: npm i --save-dev @types/jest
 
 ### Backend HTTP Request Processing Diagram
 ```mermaid
