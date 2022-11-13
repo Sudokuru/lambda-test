@@ -10,6 +10,6 @@ const db = {
 };
 db.mongoose = mongoose;
 db.url = dbConfig.url;
-db.books = require("../models/bookmodel")(mongoose);
+db.books = require("./bookmodel")(mongoose);
 
 module.exports = db;
