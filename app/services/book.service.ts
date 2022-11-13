@@ -15,4 +15,9 @@ function adder(a: number, b: number):number {
     return a + b;
 }
 
-module.exports = {create, search, adder};
+function callSomething(something) {
+    something();
+    return;
+}
+
+module.exports = {create, search, adder, callSomething};
