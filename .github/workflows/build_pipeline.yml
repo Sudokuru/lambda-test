@@ -26,4 +26,5 @@ jobs:
     - run: npm i    
     - run: npm i --save-dev @types/jest
     - run: npm i --save-dev @types/node
+    - run: npm run transpile
     - run: npm run test
