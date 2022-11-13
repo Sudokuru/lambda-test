@@ -24,4 +24,5 @@ jobs:
       with:
         node-version: 16.x
     - run: npm i    
+    - run: npm i --save-dev @types/jest
     - run: npm run test
