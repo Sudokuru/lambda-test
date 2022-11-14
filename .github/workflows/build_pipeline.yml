@@ -1,8 +1,8 @@
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "updatedScriptsAndDependencies" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "updatedScriptsAndDependencies" ]
     
 jobs:
   build:
@@ -11,6 +11,9 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
+      with:
+        ref: 'updatedScriptsAndDependencies'
+
       
     - name: Start Mongo Docker
       uses: isbang/compose-action@v1.3.2
