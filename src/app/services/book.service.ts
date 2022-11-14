@@ -15,9 +15,17 @@ function adder(a: number, b: number):number {
     return a + b;
 }
 
+function multiplier(a: number, b: number):number {
+    let result:number = 0;
+    for (let i:number = 0; i < b; i++) {
+        result = module.exports.adder(result, a);
+    }
+    return result;
+}
+
 function callSomething(something) {
     something();
     return;
 }
 
-module.exports = {create: testCreate, search: testSearch, adder, callSomething};
+module.exports = {create: testCreate, search: testSearch, adder, callSomething, multiplier};
