@@ -8,5 +8,6 @@ const {
 
 module.exports = {
     //url: `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=admin`
-    url: `mongodb://localhost:27917`
+    //url: `mongodb://localhost:27917`
+    url: process.env.MONGO_URL
 };
