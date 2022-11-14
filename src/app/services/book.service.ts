@@ -1,12 +1,12 @@
 const dbb = require('./db.service');
 
-async function create(book) {
+async function testCreate(book) {
     const result = await dbb.upload(book);
     return result;
 }
 
 // Get title of all books with description selecting the title field
-async function search(description: string) {
+async function testSearch(description: string) {
     const result = await dbb.query(description);
     return result;
 }
@@ -20,4 +20,4 @@ function callSomething(something) {
     return;
 }
 
-module.exports = {create, search, adder, callSomething};
+module.exports = {create: testCreate, search: testSearch, adder, callSomething};
