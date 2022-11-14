@@ -29,7 +29,7 @@ const BookModel = require("../models/bookmodel");
 // Upload book to database
 async function upload(book) {
     try {
-        await connectToDB();
+        await module.exports.connectToDB();
         let res = await BookModel.create({title: book.title, description: book.description, published: book.published});
         return res;
     } catch (err) {
@@ -40,7 +40,7 @@ async function upload(book) {
 // Get all books with description selecting the title field
 async function query(description: string) {
     try {
-        await connectToDB();
+        await module.exports.connectToDB();
         // await means that this async function won't return until it finishes
         let res = await BookModel.find({description: description}, "title");
         return res;
@@ -49,4 +49,4 @@ async function query(description: string) {
     }
 }
 
-module.exports = {upload, query};
+module.exports = {connectToDB, upload, query};
