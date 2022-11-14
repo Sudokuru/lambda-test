@@ -8,13 +8,14 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID}}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY}}
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
       with:
         ref: 'updatedScriptsAndDependencies'
-
-      
     - name: Start Mongo Docker
       uses: isbang/compose-action@v1.3.2
       with:
@@ -28,4 +29,9 @@ jobs:
         node-version: 16.x
     - run: npm i
     - run: npm run test
-    - run: npm run deploy
+    - name: Deployment
+      run: npm run deploy 
+    - name: Echo
+      run: echo ${{ secrets.AWS_ACCESS_KEY_ID}}
+        
+    
