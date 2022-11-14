@@ -5,10 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "transpile": "tsc src/app.ts && tsc src/app/config/db.config.ts && tsc src/app/models/index.ts && tsc src/app/models/bookmodel.ts && tsc src/app/routes/books.route.ts && tsc src/app/controllers/books.controller.ts && tsc src/app/services/book.service.ts && tsc src/app/services/db.service.ts",
-    "start": "npm run transpile && node src/app.js local",
-    "newStart": "ts-node src/app.ts",
-    "deploy": "npm run transpile && serverless deploy"
+    "start": "ts-node src/app.ts local",
+    "deploy": "tsc && serverless deploy"
   },
   "keywords": [],
   "author": "",
@@ -23,13 +21,13 @@
     "node": "^19.0.1",
     "npm": "^9.1.1",
     "serverless-http": "^3.0.2",
-    "ts-jest": "^29.0.3",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.8.4"
+    "ts-node": "^10.9.1"
   },
   "devDependencies": {
     "@types/jest": "^29.2.2",
     "@types/node": "^18.11.9",
-    "jest": "^29.3.1"
+    "jest": "^29.3.1",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
   }
 }
