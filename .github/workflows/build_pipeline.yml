@@ -1,8 +1,8 @@
 on:
   push:
-    branches: [ "updatedScriptsAndDependencies" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "updatedScriptsAndDependencies" ]
+    branches: [ "master" ]
     
 jobs:
   build:
@@ -15,8 +15,6 @@ jobs:
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
-      with:
-        ref: 'updatedScriptsAndDependencies'
     - name: Replace Mongo Url
       uses: microsoft/variable-substitution@v1 
       with:
