@@ -1,6 +1,6 @@
 const serverless = require('serverless-http');
-const express = require('express');
-const app = express();
+const expressApp = require('express');
+const app = expressApp();
 const cors = require("cors");
 require("dotenv").config({ path: "./config.env" });
 const port = process.env.NODE_DOCKER_PORT || 3000;
@@ -16,8 +16,8 @@ process.argv.forEach(function(val, index, array) {
 //app.use(require("./app/routes/books"));
 //require("./app/routes/record")(app);
 app.use(cors());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(expressApp.urlencoded({ extended: true }));
+app.use(expressApp.json());
 
 const booksRouter = require('./app/routes/books.route');
 app.use('/books', booksRouter);

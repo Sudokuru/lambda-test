@@ -6,8 +6,9 @@ const {
     DB_NAME,
 } = process.env;
 
+var jsonstring = require('../../../Variables.json');
+
 module.exports = {
     //url: `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=admin`
-    //url: `mongodb://localhost:27917`
-    url: process.env.MONGO_URL
+    url: jsonstring.MONGO_URL
 };

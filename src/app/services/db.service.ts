@@ -1,7 +1,7 @@
 // connect to database
-const db = require("../models");
+const database = require("../models");
 
-console.log(db.url);
+console.log(database.url);
 
 var connectedToDB = false;
 
@@ -9,8 +9,8 @@ async function connectToDB() {
     if (connectedToDB) {
         return;
     }
-    db.mongoose
-    .connect(db.url, {
+    database.mongoose
+    .connect(database.url, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
