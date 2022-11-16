@@ -1,13 +1,32 @@
 const dbb = require('./db.service');
 
+// Create a book
 async function Create(book) {
     const result = await dbb.upload(book);
     return result;
 }
 
-// Get title of all books with description selecting the title, description, and published fields
-async function Search(description: string) {
-    const result = await dbb.query(description);
+// Gets all books with title, description, and published value.
+async function Search(title: string, description: string, published: boolean) {
+
+    // we only want to add values to our filter if they are provided to us
+    // by the request (aka not null values)
+    // If this was our actual backend service I would break it out into another function.
+    const filterValues = [];
+    if (title != null){
+        filterValues.push({title: title});
+    }
+    if (description != null){
+        filterValues.push({description: description});
+    }
+    if (published != null){
+        filterValues.push({published: published});
+    }
+    if (title == null && description == null && published == null){
+        filterValues.push({});
+    }
+
+    const result = await dbb.query(filterValues);
     return result;
 }
 

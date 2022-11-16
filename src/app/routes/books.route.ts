@@ -6,9 +6,9 @@ const booksRoute = express.Router();
 const booksController = require('../controllers/books.controller');
 
 /* POST create book */
-booksRoute.post('/create', booksController.create);
+booksRoute.post("/", booksController.create);
 
 /* GET search books */
-booksRoute.get('/search', booksController.search);
+booksRoute.get("/", booksController.search);
 
 module.exports = booksRoute;
