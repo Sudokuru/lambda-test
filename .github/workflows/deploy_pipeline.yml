@@ -1,11 +1,11 @@
 name: "Deploy Pipeline"
 
 on:
-workflow_run:
-    workflows: ["Build Pipeline"]
-    branches: ["master"]
-    types:
-      - completed
+    workflow_run:
+        workflows: ["Build Pipeline"]
+        branches: ["master"]
+        types:
+          - completed
     
 jobs:
   build:
