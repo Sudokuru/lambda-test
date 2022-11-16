@@ -11,8 +11,10 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
+    
     - name: Checkout repository
       uses: actions/checkout@v3
+      
     - name: Start Mongo Docker
       uses: isbang/compose-action@v1.3.2
       with:
@@ -20,14 +22,18 @@ jobs:
         down-flags: "--volumes"
         services: |
           mongodb
-    - name: Run jest tests
+          
+    - name: Install Node
       uses: actions/setup-node@v3
       with:
         node-version: 16.x
+        
     - run: npm i
     - run: npm run test
-    - uses: actions/upload-artifact@v2  # upload test results
-      if: success() || failure()        # run this step even if previous step failed
+    - name: Test Reporter
+      uses: dorny/test-reporter@v1
+      if: success() || failure()    
       with:
-        name: test-results
-        path: junit.xml
+        name: JEST Tests            
+        path: junit.xml    
+        reporter: jest-junit 
