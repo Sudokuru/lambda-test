@@ -37,16 +37,28 @@ async function upload(book) {
     }
 }
 
-// Get all books with description selecting the title, description, and published fields
-async function query(description: string) {
+// Gets all books with all filter values
+async function queryAND(filterValues) {
     try {
         await module.exports.connectToDB();
         // await means that this async function won't return until it finishes
-        let res = await BookModel.find({description: description}).select("title description published");
+        let res = await BookModel.find({ $and : filterValues });
         return res;
     } catch (err) {
         console.log(err);
     }
 }
 
-module.exports = {connectToDB, upload, query};
+//Gets all books with any filter values
+async function queryOR(filterValues) {
+    try {
+        await module.exports.connectToDB();
+        // await means that this async function won't return until it finishes
+        let res = await BookModel.find({ $or : filterValues });
+        return res;
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+module.exports = {connectToDB, upload, query: queryAND};
