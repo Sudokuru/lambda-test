@@ -1,0 +1,112 @@
+openapi: 3.0.0
+info:
+    title: Backend POC
+    description: This is the backend POC.
+    version: 1.0.0
+
+servers:
+  - url: http://localhost:3000/
+    description: This is the url for the service when it is running locally.
+
+paths:
+  /books/create:
+    post:
+      summary: Creates a book.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+      responses:
+        '201':
+          description: Book has been created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '400':
+          $ref: '#/components/responses/400'
+        '500':
+          $ref: '#/components/responses/500'
+
+  /books/search?description={description}:
+    get:
+      summary: Searches for a book based on description
+      parameters:
+        - name: description
+          in: path
+          required: true
+          description: Book description to search by
+          schema:
+            type: string
+            example: Science Fiction
+      responses:
+        '200':
+          description: One or more books have been found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '400':
+          $ref: '#/components/responses/400'
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+
+components:
+  schemas:
+    Book:
+      type: object
+      properties:
+        book:
+          type: object
+          properties:
+            _id:
+              type: string
+              format: uuid
+              example: 637272874c901c43e98d3878
+              required: false
+            title:
+              type: string
+              example: Enders race
+              required: true
+            description:
+              type: string
+              example: Science Fiction
+              required: true
+            published:
+              type: boolean
+              example: true
+              required: true
+    Error-Response:
+      type: object
+      properties:
+        Error-Code:
+          type: integer
+          example: 400
+        Error-Message:
+          type: string
+          example: Error Message
+
+  responses:
+    '400':
+      description: Invalid Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error-Response'
+    '404':
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error-Response'
+    '500':
+      description: Server Failure
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error-Response'
+

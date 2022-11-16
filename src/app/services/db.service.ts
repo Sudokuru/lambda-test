@@ -37,12 +37,12 @@ async function upload(book) {
     }
 }
 
-// Get all books with description selecting the title field
+// Get all books with description selecting the title, description, and published fields
 async function query(description: string) {
     try {
         await module.exports.connectToDB();
         // await means that this async function won't return until it finishes
-        let res = await BookModel.find({description: description}, "title");
+        let res = await BookModel.find({description: description}).select("title description published");
         return res;
     } catch (err) {
         console.log(err);
