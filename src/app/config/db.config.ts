@@ -1,11 +1,3 @@
-const {
-//    DB_USER,
-//    DB_PASSWORD,
-    DB_HOST,
-    DB_PORT,
-    DB_NAME,
-} = process.env;
-
 var jsonstring = require('../../../Variables.json');
 
 module.exports = {

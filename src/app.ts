@@ -3,7 +3,7 @@ const expressApp = require('express');
 const app = expressApp();
 const cors = require("cors");
 require("dotenv").config({ path: "./config.env" });
-const port = process.env.NODE_DOCKER_PORT || 3000;
+const port = process.env.APP_PORT || 3000;
 
 // Runs on local port if ran using node app.js local
 let local:boolean = false;
