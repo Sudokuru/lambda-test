@@ -26,7 +26,7 @@ async function Search(title: string, description: string, published: boolean) {
         filterValues.push({});
     }
 
-    const result = await dbb.query(filterValues);
+    const result = await dbb.queryAND(filterValues);
     return result;
 }
 

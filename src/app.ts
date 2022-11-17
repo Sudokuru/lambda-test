@@ -1,3 +1,5 @@
+import errorHandler from "./app/errorHandler/error.handler";
+
 const serverless = require('serverless-http');
 const expressApp = require('express');
 const app = expressApp();
@@ -28,6 +30,8 @@ app.get('/api/info', (req, res) => {
 app.post('/api/v1/getback', (req, res) => {
   res.send({ ...req.body });
 });
+
+app.use(errorHandler);
 
 if (local) {
     app.listen(port, () => console.log(`Listening on: ${port}`));

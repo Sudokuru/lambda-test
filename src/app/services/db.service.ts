@@ -1,4 +1,6 @@
 // connect to database
+import {CustomError} from "../models/errormodel";
+
 const database = require("../models");
 
 console.log(database.url);
@@ -43,6 +45,9 @@ async function queryAND(filterValues) {
         await module.exports.connectToDB();
         // await means that this async function won't return until it finishes
         let res = await BookModel.find({ $and : filterValues });
+        if (res.length == 0){
+            throw new CustomError("Not Found", 404);
+        }
         return res;
     } catch (err) {
         console.log(err);
@@ -61,4 +66,4 @@ async function queryOR(filterValues) {
     }
 }
 
-module.exports = {connectToDB, upload, query: queryAND};
+module.exports = {connectToDB, upload, queryAND: queryAND};
