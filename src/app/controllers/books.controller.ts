@@ -1,3 +1,5 @@
+import {sanitizeErrorMessage} from "../models/errormodel";
+
 const bookService = require('../services/book.service');
 const Book = require('../models/bookmodel')
 
@@ -12,8 +14,9 @@ async function create(req, res, next) {
 
         res.json(await bookService.create(newBook));
     } catch(err) {
-        next(err);
         console.log(err);
+        sanitizeErrorMessage(err);
+        next(err);
     }
 }
 
@@ -22,8 +25,9 @@ async function search(req, res, next) {
     try {
         res.json(await bookService.search(req.query.title, req.query.description, req.query.published));
     } catch(err) {
-        next(err);
         console.log(err);
+        sanitizeErrorMessage(err);
+        next(err);
     }
 }
 

@@ -1,5 +1,5 @@
 // connect to database
-import {CustomError} from "../models/errormodel";
+import {CustomError, CustomErrorEnum} from "../models/errormodel";
 
 const database = require("../models");
 
@@ -21,8 +21,7 @@ async function connectToDB() {
                 connectedToDB = true;
             });
     } catch(err){
-        console.log("Cannot connect to the database");
-        throw new CustomError("Database is not up", 500);
+        throw new CustomError(CustomErrorEnum.DATABASE_IS_DOWN, 500);
     }
 }
 
@@ -36,7 +35,7 @@ async function upload(book) {
         return res;
     } catch(err){
         console.log(err)
-        throw new CustomError("Database failed to complete request", 500);
+        throw new CustomError(CustomErrorEnum.DATABASE_REQUEST_REJECTED, 500);
     }
 }
 
@@ -49,10 +48,10 @@ async function queryAND(filterValues) {
         res = await BookModel.find({ $and : filterValues });
     } catch (err){
         console.log(err);
-        throw new CustomError("Database failed to complete request", 500);
+        throw new CustomError(CustomErrorEnum.DATABASE_REQUEST_REJECTED, 500);
     }
     if (res.length == 0){
-        throw new CustomError("Not Found", 404);
+        throw new CustomError(CustomErrorEnum.BOOK_NOT_FOUND, 404);
     }
     return res;
 }
@@ -65,7 +64,7 @@ async function queryOR(filterValues) {
         let res = await BookModel.find({ $or : filterValues });
         return res;
     } catch(err){
-        throw new CustomError("Database failed to complete request", 500);
+        throw new CustomError(CustomErrorEnum.DATABASE_REQUEST_REJECTED, 500);
     }
 }
 
