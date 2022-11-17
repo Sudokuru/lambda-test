@@ -30,40 +30,28 @@ const BookModel = require("../models/bookmodel");
 
 // Upload book to database
 async function upload(book) {
-    try {
-        await module.exports.connectToDB();
-        let res = await BookModel.create({title: book.title, description: book.description, published: book.published});
-        return res;
-    } catch (err) {
-        console.log(err);
-    }
+    await module.exports.connectToDB();
+    let res = await BookModel.create({title: book.title, description: book.description, published: book.published});
+    return res;
 }
 
 // Gets all books with all filter values
 async function queryAND(filterValues) {
-    try {
-        await module.exports.connectToDB();
-        // await means that this async function won't return until it finishes
-        let res = await BookModel.find({ $and : filterValues });
-        if (res.length == 0){
-            throw new CustomError("Not Found", 404);
-        }
-        return res;
-    } catch (err) {
-        console.log(err);
+    await module.exports.connectToDB();
+    // await means that this async function won't return until it finishes
+    let res = await BookModel.find({ $and : filterValues });
+    if (res.length == 0){
+        throw new CustomError("Not Found", 404);
     }
+    return res;
 }
 
 //Gets all books with any filter values
 async function queryOR(filterValues) {
-    try {
-        await module.exports.connectToDB();
-        // await means that this async function won't return until it finishes
-        let res = await BookModel.find({ $or : filterValues });
-        return res;
-    } catch (err) {
-        console.log(err);
-    }
+    await module.exports.connectToDB();
+    // await means that this async function won't return until it finishes
+    let res = await BookModel.find({ $or : filterValues });
+    return res;
 }
 
 module.exports = {connectToDB, upload, queryAND: queryAND};

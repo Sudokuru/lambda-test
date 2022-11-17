@@ -12,6 +12,7 @@ async function create(req, res, next) {
 
         res.json(await bookService.create(newBook));
     } catch(err) {
+        next(err);
         console.log(err);
     }
 }
@@ -21,6 +22,7 @@ async function search(req, res, next) {
     try {
         res.json(await bookService.search(req.query.title, req.query.description, req.query.published));
     } catch(err) {
+        next(err);
         console.log(err);
     }
 }

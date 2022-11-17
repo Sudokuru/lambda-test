@@ -13,6 +13,12 @@ function handleError(
 
     // not really sure what this does
     res.status((customError as CustomError).Status).send(customError);
+
+    if (!(err instanceof CustomError)) {
+        customError = new CustomError(
+            "This is the default error", 500
+        );
+    }
 };
 
 export default handleError;
