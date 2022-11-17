@@ -9,7 +9,7 @@ servers:
     description: This is the url for the service when it is running locally.
 
 paths:
-  /books/create:
+  /books:
     post:
       summary: Creates a book.
       requestBody:
@@ -17,37 +17,51 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Book'
+              $ref: '#/components/schemas/BooksRequest'
       responses:
         '201':
           description: Book has been created.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Book'
+                $ref: '#/components/schemas/BooksResponse'
         '400':
           $ref: '#/components/responses/400'
         '500':
           $ref: '#/components/responses/500'
 
-  /books/search?description={description}:
+  /books?title={title}&description={description}&published={published}:
     get:
       summary: Searches for a book based on description
       parameters:
+        - name: title
+          in: path
+          required: false
+          description: Book title to search by
+          schema:
+            type: string
+            example: Mistborn
         - name: description
           in: path
-          required: true
+          required: false
           description: Book description to search by
           schema:
             type: string
-            example: Science Fiction
+            example: Fantasy
+        - name: published
+          in: path
+          required: false
+          description: Book published state to search by
+          schema:
+            type: boolean
+            example: false
       responses:
         '200':
           description: One or more books have been found.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Book'
+                $ref: '#/components/schemas/BooksResponse'
         '400':
           $ref: '#/components/responses/400'
         '404':
@@ -57,28 +71,37 @@ paths:
 
 components:
   schemas:
-    Book:
+    BooksRequest:
+      description: Input Parameters
       type: object
       properties:
-        book:
-          type: object
+        title:
+          type: string
+          example: Enders race
+          required: true
+        description:
+          type: string
+          example: Science Fiction
+          required: true
+        published:
+          type: boolean
+          example: true
+          required: true
+    BooksResponse:
+      allOf:
+        - type: object
           properties:
             _id:
               type: string
               format: uuid
               example: 637272874c901c43e98d3878
-              required: false
-            title:
-              type: string
-              example: Enders race
               required: true
-            description:
-              type: string
-              example: Science Fiction
-              required: true
-            published:
-              type: boolean
-              example: true
+        - $ref: '#/components/schemas/BooksRequest'
+        - type: object
+          properties:
+            __v:
+              type: integer
+              example: 0
               required: true
     Error-Response:
       type: object
