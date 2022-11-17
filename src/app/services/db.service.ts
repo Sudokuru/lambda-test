@@ -42,18 +42,19 @@ async function upload(book) {
 
 // Gets all books with all filter values
 async function queryAND(filterValues) {
+    let res;
     await module.exports.connectToDB();
     try{
         // await means that this async function won't return until it finishes
-        let res = await BookModel.find({ $and : filterValues });
-        if (res.length == 0){
-            throw new CustomError("Not Found", 404);
-        }
-        return res;
+        res = await BookModel.find({ $and : filterValues });
     } catch (err){
         console.log(err);
         throw new CustomError("Database failed to complete request", 500);
     }
+    if (res.length == 0){
+        throw new CustomError("Not Found", 404);
+    }
+    return res;
 }
 
 //Gets all books with any filter values
