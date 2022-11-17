@@ -106,12 +106,12 @@ components:
     Error-Response:
       type: object
       properties:
-        Error-Code:
-          type: integer
-          example: 400
-        Error-Message:
+        Error_Message:
           type: string
           example: Error Message
+        Status:
+          type: integer
+          example: 400
 
   responses:
     '400':
