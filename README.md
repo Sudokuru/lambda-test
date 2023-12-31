@@ -1,3 +1,5 @@
+> [!IMPORTANT]  
+> This repository is read-only / archived and will not recieve updates.
 
 ### Folder Structure:
 ```configs:``` contains all configurations e.g. database login info in db.config.ts<br>
